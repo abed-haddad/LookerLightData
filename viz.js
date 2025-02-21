@@ -1,6 +1,6 @@
 const dscc = require('@google/dscc');
 
-// Function to draw visualization
+// Function to draw the visualization
 const drawViz = (data) => {
   const container = document.getElementById('viz-container');
   container.innerHTML = ''; // Clear previous render
@@ -10,13 +10,13 @@ const drawViz = (data) => {
     return;
   }
 
-  // Extract selections and image URLs from Looker Studio dataset
+  // Extract unique selections and their image URLs
   const dataset = data.tables.DEFAULT.map(row => ({
     selection: row.Selection[0],
     imageUrl: row['Image URL'][0]
   }));
 
-  // Create a dropdown menu
+  // Create a dropdown menu dynamically
   const select = document.createElement('select');
   dataset.forEach((item) => {
     const option = document.createElement('option');
@@ -27,13 +27,13 @@ const drawViz = (data) => {
 
   // Create an image element
   const image = document.createElement('img');
-  image.src = dataset[0].imageUrl;
+  image.src = dataset[0].imageUrl; // Default image
   image.style.maxWidth = "100%";
   image.style.height = "auto";
   image.style.display = "block";
   image.style.marginTop = "10px";
 
-  // Update image on dropdown change
+  // Update image when dropdown selection changes
   select.addEventListener('change', () => {
     image.src = select.value;
   });
@@ -43,5 +43,5 @@ const drawViz = (data) => {
   container.appendChild(image);
 };
 
-// Listen for data updates
+// Listen for data updates from Looker Studio
 dscc.subscribeToData(drawViz, { transform: dscc.objectTransform });
