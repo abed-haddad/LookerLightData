@@ -1,0 +1,22 @@
+{
+  "visualization": {
+    "id": "image_selector",
+    "label": "Dynamic Image Selector",
+    "description": "Displays an image based on a selected dropdown value",
+    "icon": "image",
+    "data": {
+      "requiredFields": [
+        {
+          "name": "Selection",
+          "type": "DIMENSION",
+          "allowedTypes": ["TEXT"]
+        },
+        {
+          "name": "Image URL",
+          "type": "DIMENSION",
+          "allowedTypes": ["TEXT"]
+        }
+      ]
+    }
+  }
+}
